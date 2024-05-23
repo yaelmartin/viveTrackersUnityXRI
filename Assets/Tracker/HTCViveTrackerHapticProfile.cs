@@ -12,8 +12,8 @@ using System;
 using UnityEditor;
 #endif
 
-using PoseControl = UnityEngine.XR.OpenXR.Input.PoseControl; // If using the old PoseControl
-//using PoseControl = UnityEngine.InputSystem.XR.PoseControl;
+//using PoseControl = UnityEngine.XR.OpenXR.Input.PoseControl; // If using the old PoseControl
+using PoseControl = UnityEngine.InputSystem.XR.PoseControl;
 
 
 namespace UnityEngine.XR.OpenXR.Features.Interactions
