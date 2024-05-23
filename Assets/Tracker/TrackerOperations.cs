@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Serialization;
 
 namespace Tracker
 {
@@ -25,7 +26,7 @@ namespace Tracker
         [SerializeField] private Transform tracker;
         [SerializeField] private Transform spawn;
         [SerializeField] private Transform irlObjectWithTracker;
-        [SerializeField] private ActionBasedController trackerActionBasedController;
+        [SerializeField] private TrackedPoseDriver trackerTrackedPoseDriver;
 
         public string filePath = "trackerParameters.json";
         private TrackerParameters _trackerParameters;
@@ -71,7 +72,7 @@ namespace Tracker
 
         public void ToggleTracker(bool state)
         {
-            trackerActionBasedController.enabled = state;
+            trackerTrackedPoseDriver.enabled = state;
         }
 
 
