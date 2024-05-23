@@ -7,28 +7,26 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.InputSystem;
 using System.Runtime.InteropServices;
 using System;
- 
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-#if USE_INPUT_SYSTEM_POSE_CONTROL
-using PoseControl = UnityEngine.InputSystem.XR.PoseControl;
-#else
-using PoseControl = UnityEngine.XR.OpenXR.Input.PoseControl;
-#endif
+using PoseControl = UnityEngine.XR.OpenXR.Input.PoseControl; // If using the old PoseControl
+//using PoseControl = UnityEngine.InputSystem.XR.PoseControl;
+
 
 namespace UnityEngine.XR.OpenXR.Features.Interactions
 {
     /// <summary>
-    /// This <see cref="OpenXRInteractionFeature"/> enables the use of HTC Vive Trackers interaction profiles in OpenXR.
+    /// This <see cref="OpenXRInteractionFeature"/> enables the use of HTC Vive Tracker Haptics interaction profiles in OpenXR.
     /// </summary>
 #if UNITY_EDITOR
     [UnityEditor.XR.OpenXR.Features.OpenXRFeature(
         UiName = "HTC Vive Tracker Profile",
         BuildTargetGroups = new[] { BuildTargetGroup.Standalone, BuildTargetGroup.WSA },
         Company = "MASSIVE",
-        Desc = "Allows for mapping input to the HTC Vive Tracker interaction profile.",
+        Desc = "Allows for mapping input to the HTC Vive Tracker Haptic interaction profile. Modified by Max Bennett for haptic output.",
         DocumentationLink = Constants.k_DocumentationManualURL,
         OpenxrExtensionStrings = HTCViveTrackerProfile.extensionName,
         Version = "0.0.1",
@@ -41,91 +39,85 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
         /// The feature id string. This is used to give the feature a well known id for reference.
         /// </summary>
         public const string featureId = "com.massive.openxr.feature.input.htcvivetracker";
- 
+
         /// <summary>
-        /// The interaction profile string used to reference the <a href="https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#:~:text=in%20this%20case.-,VIVE%20Tracker%20interaction%20profile,-Interaction%20profile%20path">HTC Vive Tracker</a>.
+        /// The interaction profile string used to reference the <a href="https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#:~:text=in%20this%20case.-,VIVE%20Tracker%20interaction%20profile,-Interaction%20profile%20path">HTC Vive Tracker Haptic</a>.
         /// </summary>
         public const string profile = "/interaction_profiles/htc/vive_tracker_htcx";
- 
+
         /// <summary>
         /// The name of the OpenXR extension that supports the Vive Tracker
         /// </summary>
         public const string extensionName = "XR_HTCX_vive_tracker_interaction";
- 
+
         private const string kDeviceLocalizedName = "HTC Vive Tracker OpenXR";
- 
+
         /// <summary>
         /// OpenXR user path definitions for the tracker.
         /// </summary>
         public static class TrackerUserPaths
         {
-        
-            /// <summary>
-            /// Path for user left foot
-            /// </summary>
-            public const string handheldObject = "/user/vive_tracker_htcx/role/handheld_object";
-
             /// <summary>
             /// Path for user left foot
             /// </summary>
             public const string leftFoot = "/user/vive_tracker_htcx/role/left_foot";
- 
+
             /// <summary>
             /// Path for user roght foot
             /// </summary>
             public const string rightFoot = "/user/vive_tracker_htcx/role/right_foot";
- 
+
             /// <summary>
             /// Path for user left shoulder
             /// </summary>
             public const string leftShoulder = "/user/vive_tracker_htcx/role/left_shoulder";
- 
+
             /// <summary>
             /// Path for user right shoulder
             /// </summary>
             public const string rightShoulder = "/user/vive_tracker_htcx/role/right_shoulder";
- 
+
             /// <summary>
             /// Path for user left elbow
             /// </summary>
             public const string leftElbow = "/user/vive_tracker_htcx/role/left_elbow";
- 
+
             /// <summary>
             /// Path for user right elbow
             /// </summary>
             public const string rightElbow = "/user/vive_tracker_htcx/role/right_elbow";
- 
+
             /// <summary>
             /// Path for user left knee
             /// </summary>
             public const string leftKnee = "/user/vive_tracker_htcx/role/left_knee";
- 
+
             /// <summary>
             /// Path for user right knee
             /// </summary>
             public const string rightKnee = "/user/vive_tracker_htcx/role/right_knee";
- 
+
             /// <summary>
             /// Path for user waist
             /// </summary>
             public const string waist = "/user/vive_tracker_htcx/role/waist";
- 
+
             /// <summary>
             /// Path for user chest
             /// </summary>
             public const string chest = "/user/vive_tracker_htcx/role/chest";
- 
+
             /// <summary>
             /// Path for user custom camera
             /// </summary>
             public const string camera = "/user/vive_tracker_htcx/role/camera";
- 
+
             /// <summary>
             /// Path for user keyboard
             /// </summary>
             public const string keyboard = "/user/vive_tracker_htcx/role/keyboard";
         }
- 
+
         /// <summary>
         /// OpenXR component path definitions for the tracker.
         /// </summary>
@@ -135,15 +127,10 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
             /// Constant for a pose interaction binding '.../input/grip/pose' OpenXR Input Binding. Used by input subsystem to bind actions to physical inputs.
             /// </summary>
             public const string grip = "/input/grip/pose";
-
             /// <summary>
-            /// Constant for a trigger interaction binding '.../input/trigger/click' OpenXR Input Binding. Used by input subsystem to bind actions to physical inputs.
+            /// Constant for a haptic interaction binding '.../output/haptic' OpenXR Input Binding. Used by input subsystem to bind actions to physical inputs.
             /// </summary>
-            public const string trigger = "/input/trigger/click";
-
-            public const string triggerValue = "/input/trigger/value";
-
-            public const string menuClick = "/input/menu/click";
+            public const string haptic = "/output/haptic";
         }
 
         /// <summary>
@@ -153,11 +140,11 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
         public class XRTracker : TrackedDevice
         {
         }
- 
+
         /// <summary>
-        /// An Input System device based off the <a href="https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#_htc_vive_controller_profile">HTC Vive Tracker</a>.
+        /// An Input System device based off the <a href="https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#_htc_vive_controller_profile">HTC Vive Tracker Haptic</a>.
         /// </summary>
-        [Preserve, InputControlLayout(displayName = "HTC Vive-Tracker (OpenXR)", commonUsages = new[] { "Handheld Object", "Left Foot", "Right Foot", "Left Shoulder", "Right Shoulder", "Left Elbow", "Right Elbow", "Left Knee", "Right Knee", "Waist", "Chest", "Camera", "Keyboard" })]
+        [Preserve, InputControlLayout(displayName = "HTC Vive Tracker (OpenXR)", commonUsages = new[] { "Left Foot", "Right Foot", "Left Shoulder", "Right Shoulder", "Left Elbow", "Right Elbow", "Left Knee", "Right Knee", "Waist", "Chest", "Camera", "Keyboard" })]
         public class XRViveTracker : XRTracker
         {
             /// <summary>
@@ -165,42 +152,30 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
             /// </summary>
             [Preserve, InputControl(offset = 0, aliases = new[] { "device", "gripPose" }, usage = "Device", noisy = true)]
             public PoseControl devicePose { get; private set; }
- 
+
             /// <summary>
             /// A [Vector3Control](xref:UnityEngine.InputSystem.Controls.Vector3Control) required for back compatibility with the XRSDK layouts. This is the device position. For the Oculus Touch device, this is both the grip and the pointer position. This value is equivalent to mapping devicePose/position.
             /// </summary>
             [Preserve, InputControl(offset = 8, alias = "gripPosition", noisy = true)]
             new public Vector3Control devicePosition { get; private set; }
- 
+
             /// <summary>
             /// A [QuaternionControl](xref:UnityEngine.InputSystem.Controls.QuaternionControl) required for backwards compatibility with the XRSDK layouts. This is the device orientation. For the Oculus Touch device, this is both the grip and the pointer rotation. This value is equivalent to mapping devicePose/rotation.
             /// </summary>
             [Preserve, InputControl(offset = 20, alias = "gripOrientation", noisy = true)]
             new public QuaternionControl deviceRotation { get; private set; }
-            
+
             [Preserve, InputControl(offset = 60)]
             new public ButtonControl isTracked { get; private set; }
-            
+
             [Preserve, InputControl(offset = 64)]
             new public IntegerControl trackingState { get; private set; }
-/*
-            [Preserve, InputControl(offset = 68)]
-            public ButtonControl triggerPressed { get; private set; }
-*/
+
             /// <summary>
-            /// A [ButtonControl](xref:UnityEngine.InputSystem.Controls.ButtonControl) that represents information from the <see cref="HTCViveControllerProfile.triggerClick"/> OpenXR binding.
+            /// A <see cref="HapticControl"/> that represents the <see cref="HTCViveControllerProfile.haptic"/> binding.
             /// </summary>
-            // [Preserve, InputControl(alias = "triggerPressed", usage = "triggerPressed")]
-            [InputControl]
-            public ButtonControl triggerPressed { get; private set; }
-           
-            //[Preserve, InputControl(alias = "menuClicked", usage = "menuClicked")]
-            [InputControl]
-            public ButtonControl menuClicked { get; private set; }
-
-            [Preserve, InputControl(alias = "triggerValue", usage = "triggerValue")]
-            public AxisControl triggerValue { get; private set; }
-
+            [Preserve, InputControl(usage = "Haptic")]
+            public HapticControl haptic { get; private set; }
 
             /// <inheritdoc cref="OpenXRDevice"/>
             protected override void FinishSetup()
@@ -210,17 +185,13 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
                 devicePosition = GetChildControl<Vector3Control>("devicePosition");
                 deviceRotation = GetChildControl<QuaternionControl>("deviceRotation");
                 isTracked = GetChildControl<ButtonControl>("isTracked");
-                triggerPressed = GetChildControl<ButtonControl>("triggerPressed");
-                triggerValue = GetChildControl<AxisControl>("triggerValue");
                 trackingState = GetChildControl<IntegerControl>("trackingState");
-                
+
+                haptic = GetChildControl<HapticControl>("haptic");
+
                 var capabilities = description.capabilities;
                 var deviceDescriptor = XRDeviceDescriptor.FromJson(capabilities);
 
-                /* Does not work (yet)
-                if ((deviceDescriptor.characteristics & (InputDeviceCharacteristics)InputDeviceTrackerCharacteristics.handhelObject) != 0)
-                    InputSystem.InputSystem.SetDeviceUsage(this, "Handheld Object");
-                */
                 if ((deviceDescriptor.characteristics & (InputDeviceCharacteristics)InputDeviceTrackerCharacteristics.TrackerLeftFoot) != 0)
                     InputSystem.InputSystem.SetDeviceUsage(this, "Left Foot");
                 else if ((deviceDescriptor.characteristics & (InputDeviceCharacteristics)InputDeviceTrackerCharacteristics.TrackerRightFoot) != 0)
@@ -245,24 +216,22 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
                     InputSystem.InputSystem.SetDeviceUsage(this, "Camera");
                 else if ((deviceDescriptor.characteristics & (InputDeviceCharacteristics)InputDeviceTrackerCharacteristics.TrackerKeyboard) != 0)
                     InputSystem.InputSystem.SetDeviceUsage(this, "Keyboard");
-                
+
                 //Debug.Log("Device added");
             }
         }
- 
+
         /// <summary>
         /// Registers the <see cref="ViveTracker"/> layout with the Input System.
         /// </summary>
         protected override void RegisterDeviceLayout()
         {
+            InputSystem.InputSystem.RegisterLayout<XRTracker>();
+
             InputSystem.InputSystem.RegisterLayout(typeof(XRViveTracker),
                         matches: new InputDeviceMatcher()
                         .WithInterface(XRUtilities.InterfaceMatchAnyVersion)
                         .WithProduct(kDeviceLocalizedName));
-            
-            InputSystem.InputSystem.RegisterLayout<XRTracker>();
-
-            Debug.Log("Registered Device Layout");
         }
 
         /// <summary>
@@ -273,7 +242,7 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
             InputSystem.InputSystem.RemoveLayout(nameof(XRViveTracker));
             InputSystem.InputSystem.RemoveLayout(nameof(XRTracker));
         }
- 
+
         //
         // Summary:
         //     A set of bit flags describing XR.InputDevice characteristics.
@@ -294,7 +263,7 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
             TrackerCamera = 0x400000u,
             TrackerKeyboard = 0x800000u
         }
- 
+
         /// <inheritdoc/>
         protected override void RegisterActionMapsWithRuntime()
         {
@@ -370,7 +339,7 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
                 },
                 actions = new List<ActionConfig>()
                 {
-                     new ActionConfig()
+                    new ActionConfig()
                     {
                         name = "devicePose",
                         localizedName = "Device Pose",
@@ -388,84 +357,44 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
                             }
                         }
                     },
+                    
+                    // Haptics
                     new ActionConfig()
                     {
-                        name = "triggerPressed",
-                        localizedName = "Trigger Pressed",
-                        type = ActionType.Binary,
-                        usages = new List<string>()
-                        {
-                            "TriggerButton"
-                        },
+                        name = "haptic",
+                        localizedName = "Haptic Output",
+                        type = ActionType.Vibrate,
+                        usages = new List<string>() { "Haptic" },
                         bindings = new List<ActionBinding>()
                         {
                             new ActionBinding()
                             {
-                                interactionPath = TrackerComponentPaths.trigger,
-                                interactionProfileName = profile,
-                            }
-                        }
-                    },
-                    new ActionConfig()
-                    {
-                        name = "triggerValue",
-                        localizedName = "Trigger Value",
-                        type = ActionType.Axis1D,
-                        usages = new List<string>()
-                        {
-                            "TriggerValue"
-                        },
-                        bindings = new List<ActionBinding>()
-                        {
-                            new ActionBinding()
-                            {
-                                interactionPath = TrackerComponentPaths.triggerValue,
-                                interactionProfileName = profile,
-                            }
-                        }
-                    },
-                    new ActionConfig()
-                    {
-                        name = "menuClick",
-                        localizedName = "Menu click",
-                        type = ActionType.Binary,
-                        usages = new List<string>()
-                        {
-                            "menuClick"
-                        },
-                        bindings = new List<ActionBinding>()
-                        {
-                            new ActionBinding()
-                            {
-                                interactionPath = TrackerComponentPaths.menuClick,
+                                interactionPath = TrackerComponentPaths.haptic,
                                 interactionProfileName = profile,
                             }
                         }
                     }
                 }
             };
- 
-            AddActionMap(actionMap);
 
-            Debug.Log("HTC Vive Tracker Added action map");
+            AddActionMap(actionMap);
         }
 
         protected override bool OnInstanceCreate(ulong xrInstance)
         {
             bool res = base.OnInstanceCreate(xrInstance);
- 
+
             if (OpenXRRuntime.IsExtensionEnabled("XR_HTCX_vive_tracker_interaction"))
             {
-                Debug.Log("HTC Vive Tracker Extension Enabled");
+                Debug.Log("HTC Vive Tracker Haptic Extension Enabled");
             }
             else
             {
-                Debug.Log("HTC Vive Tracker Extension Not Enabled");
+                Debug.Log("HTC Vive Tracker Haptic Extension Not Enabled");
             }
- 
+
             return res;
         }
     }
- 
- 
+
 }
