@@ -263,6 +263,15 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
             TrackerCamera = 0x400000u,
             TrackerKeyboard = 0x800000u
         }
+        
+        /// <summary>
+        /// Return device layout string that used for registering device for the Input System.
+        /// </summary>
+        /// <returns>Device layout string.</returns>
+        protected override string GetDeviceLayoutName()
+        {
+            return nameof(HTCViveTrackerProfile);
+        }
 
         /// <inheritdoc/>
         protected override void RegisterActionMapsWithRuntime()
