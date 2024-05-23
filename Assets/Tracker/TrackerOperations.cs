@@ -1,36 +1,18 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
-using UnityEngine.Serialization;
 
 namespace Tracker
 {
-    public struct TrackerParameters
-    {
-        public float Degree;
-        public Vector3 TrackerOriginOffset;
-        public Vector3 IrlObjectWithTrackerPosition;
-        public Quaternion IrlObjectWithTrackerRotation;
-
-        public TrackerParameters(int dummyInt)
-        {
-            Degree = 0;
-            TrackerOriginOffset = Vector3.zero;
-            IrlObjectWithTrackerPosition = Vector3.zero;
-            IrlObjectWithTrackerRotation = new Quaternion();
-        }
-    }
-    public class TrackerOperations : MonoBehaviour
+    /// <summary>
+    /// Used to calibrate a irl object and a tracker
+    /// </summary>
+    public class TrackerOperations : TrackerConfigLoader
     {
         [SerializeField] private Transform trackerOrigin;
-        [SerializeField] private Transform tracker;
         [SerializeField] private Transform spawn;
-        [SerializeField] private Transform irlObjectWithTracker;
         [SerializeField] private TrackedPoseDriver trackerTrackedPoseDriver;
-
-        public string filePath = "trackerParameters.json";
-        private TrackerParameters _trackerParameters;
-
+        
         private Vector3 _initialIrlObjectWithTrackerPosition;
         private Quaternion _initialIrlObjectWithTrackerRotation;
         
@@ -74,45 +56,29 @@ namespace Tracker
         {
             trackerTrackedPoseDriver.enabled = state;
         }
-
-
-        public void Awake()
+        
+        private void Awake()
         {
-            filePath = Path.Combine(Application.streamingAssetsPath, filePath);
+            SetFilePath();
+            
             spawn.parent = null;
+            
             _initialIrlObjectWithTrackerPosition = irlObjectWithTracker.position;
             _initialIrlObjectWithTrackerRotation = irlObjectWithTracker.rotation;
             
-            _trackerParameters=LoadParameters(filePath);
-            ApplyParameters();
-        }
-        
-        public static TrackerParameters LoadParameters(string file)
-        {
-            if (File.Exists(file))
-            {
-                Debug.Log("File " + file + " found!");
-                string dataAsJson = File.ReadAllText(file);
-                return JsonUtility.FromJson<TrackerParameters>(dataAsJson);
-            }
-            else
-            {
-                Debug.Log("File " + file + " not found. Using default Parameters.");
-                return new TrackerParameters();
-            }
+            LoadParameters();
         }
 
-        public void ApplyParameters()
+        public void LoadParameters()
         {
+            _trackerParameters=GetParametersFromJSON(filePath);
+            
             trackerOrigin.position = _trackerParameters.TrackerOriginOffset;
             trackerOrigin.rotation=Quaternion.Euler(new Vector3(0,_trackerParameters.Degree,0));
             
-            //Parent irlObjectWithTracker and use Transform from saved .json
-            irlObjectWithTracker.SetParent(tracker);
-            irlObjectWithTracker.localPosition = _trackerParameters.IrlObjectWithTrackerPosition;
-            irlObjectWithTracker.localRotation = _trackerParameters.IrlObjectWithTrackerRotation;
+            ParentObjectWithTrackerUsingParameters();
         }
-        
+
         public void SaveParameters()
         {
             string dataAsJson = JsonUtility.ToJson(_trackerParameters);

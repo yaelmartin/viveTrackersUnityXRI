@@ -9,19 +9,20 @@ namespace Tracker.watercan
         [SerializeField] private Transform hose;
         [SerializeField] private GameObject water;
         [SerializeField] private WateringAudio wateringAudio;
-    
+
         void Update()
         {
+            //checks if we need to pour water
             if (point2.position.y < point1.position.y)
             {
                 water.transform.position = hose.position;
                 water.SetActive(true);
-                wateringAudio.Sound(true);
+                wateringAudio?.Sound(true);
             }
             else
             {
                 water.SetActive(false);
-                wateringAudio.Sound(false);
+                wateringAudio?.Sound(false);
             }
         }
     }
