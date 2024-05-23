@@ -83,24 +83,23 @@ namespace Tracker
             _initialIrlObjectWithTrackerPosition = irlObjectWithTracker.position;
             _initialIrlObjectWithTrackerRotation = irlObjectWithTracker.rotation;
             
-            LoadParameters();
+            _trackerParameters=LoadParameters(filePath);
+            ApplyParameters();
         }
         
-        public void LoadParameters()
+        public static TrackerParameters LoadParameters(string file)
         {
-            if (File.Exists(filePath))
+            if (File.Exists(file))
             {
-                Debug.Log("File " + filePath + " found!");
-                string dataAsJson = File.ReadAllText(filePath);
-                _trackerParameters = JsonUtility.FromJson<TrackerParameters>(dataAsJson);
+                Debug.Log("File " + file + " found!");
+                string dataAsJson = File.ReadAllText(file);
+                return JsonUtility.FromJson<TrackerParameters>(dataAsJson);
             }
             else
             {
-                Debug.Log("File " + filePath + " not found. Using default Parameters.");
-                _trackerParameters = new TrackerParameters();
+                Debug.Log("File " + file + " not found. Using default Parameters.");
+                return new TrackerParameters();
             }
-            
-            ApplyParameters();
         }
 
         public void ApplyParameters()
