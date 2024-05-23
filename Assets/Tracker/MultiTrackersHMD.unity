@@ -1052,7 +1052,6 @@ GameObject:
   - component: {fileID: 999563176}
   - component: {fileID: 999563175}
   - component: {fileID: 999563174}
-  - component: {fileID: 999563177}
   m_Layer: 0
   m_Name: ViveTrackerKeyboard
   m_TagString: Untagged
@@ -1194,21 +1193,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999563172}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &999563177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999563172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87abdbbd58ec0e140be4e07dc129ede8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracker: {fileID: 999563173}
-  irlObjectWithTracker: {fileID: 1985317092637619517}
-  filePath: trackerParameters.json
 --- !u!1 &1014703938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,6 +2518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985317092637619517}
   - component: {fileID: 4346332778544147253}
+  - component: {fileID: 4346332778544147255}
   m_Layer: 0
   m_Name: irlObjectWithTracker
   m_TagString: Untagged
@@ -4469,6 +4454,24 @@ MonoBehaviour:
   point2: {fileID: 5441598282981368571}
   hose: {fileID: 8761286677412478223}
   water: {fileID: 1236765058135904982}
+  wateringAudio: {fileID: 4346332778544147255}
+--- !u!114 &4346332778544147255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131451843075315606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c5346a718361e4ab576f3b5022fb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVolume: 0.3
+  fadeInTime: 0.5
+  fadeOutTime: 0.25
+  audioSource: {fileID: 9048522220612939733}
+  fadeCurve: 2
 --- !u!1 &4510371277342381896
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,7 +5338,7 @@ GameObject:
   - component: {fileID: 5457013063769420836}
   - component: {fileID: 5123807259719537915}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CurentlyUselessCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5425,6 +5428,7 @@ GameObject:
   - component: {fileID: 1634868007213498201}
   - component: {fileID: 7968955193896091904}
   - component: {fileID: 3501413169575043433}
+  - component: {fileID: 7968955193896091905}
   m_Layer: 0
   m_Name: ViveTrackerSingle
   m_TagString: Untagged
@@ -5861,7 +5865,7 @@ MonoBehaviour:
   m_Camera: {fileID: 8792994831689702881}
   m_OriginBaseGameObject: {fileID: 7913273851648771259}
   m_CameraFloorOffsetObject: {fileID: 8792994831506506180}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 1.36144
 --- !u!114 &7679384491431219298
 MonoBehaviour:
@@ -6195,6 +6199,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7968955193896091905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753582128111079007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87abdbbd58ec0e140be4e07dc129ede8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracker: {fileID: 999563173}
+  irlObjectWithTracker: {fileID: 1985317092637619517}
+  filePath: trackerParameters.json
 --- !u!4 &8002071602284403582
 Transform:
   m_ObjectHideFlags: 0
@@ -6766,6 +6785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8761286677412478223}
+  - component: {fileID: 9048522220612939733}
   m_Layer: 0
   m_Name: hose
   m_TagString: Untagged
@@ -6773,6 +6793,102 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!82 &9048522220612939733
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048522220612939732}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e3fb73269fd683b4aa8db736055e7a31, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &9127511709416964087
 RectTransform:
   m_ObjectHideFlags: 0

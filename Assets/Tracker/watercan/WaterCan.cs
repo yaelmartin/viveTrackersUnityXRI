@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tracker
+namespace Tracker.watercan
 {
     public class WaterCan : MonoBehaviour
     {
@@ -8,6 +8,7 @@ namespace Tracker
         [SerializeField] private Transform point2;
         [SerializeField] private Transform hose;
         [SerializeField] private GameObject water;
+        [SerializeField] private WateringAudio wateringAudio;
     
         void Update()
         {
@@ -15,10 +16,12 @@ namespace Tracker
             {
                 water.transform.position = hose.position;
                 water.SetActive(true);
+                wateringAudio.Sound(true);
             }
             else
             {
                 water.SetActive(false);
+                wateringAudio.Sound(false);
             }
         }
     }
