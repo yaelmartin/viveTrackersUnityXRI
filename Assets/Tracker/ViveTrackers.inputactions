@@ -2,7 +2,7 @@
     "name": "ViveTrackers",
     "maps": [
         {
-            "name": "ViveTrackerSingle",
+            "name": "VTSingle",
             "id": "4b083793-4c70-48c6-a3bb-2474bbb63fc0",
             "actions": [
                 {
@@ -123,7 +123,7 @@
             ]
         },
         {
-            "name": "ViveTrackerLeftFoot",
+            "name": "VTLeftFoot",
             "id": "6cae0809-8df3-4fed-962f-1b30b6db1f2d",
             "actions": [
                 {
@@ -244,7 +244,7 @@
             ]
         },
         {
-            "name": "ViveTrackerRightFoot",
+            "name": "VTRightFoot",
             "id": "f2762832-9b25-4d10-ab19-1a3454fd0f4e",
             "actions": [
                 {
@@ -365,7 +365,7 @@
             ]
         },
         {
-            "name": "ViveTrackerLeftShoulder",
+            "name": "VTLeftShoulder",
             "id": "bcdef370-63dc-4d53-a35c-b43c4dc72e4c",
             "actions": [
                 {
@@ -486,7 +486,7 @@
             ]
         },
         {
-            "name": "ViveTrackerRightShoulder",
+            "name": "VTRightShoulder",
             "id": "21273dbf-9b60-4968-96f0-23bf1977c4e3",
             "actions": [
                 {
@@ -607,7 +607,7 @@
             ]
         },
         {
-            "name": "ViveTrackerLeftElbow",
+            "name": "VTLeftElbow",
             "id": "85b1f238-bfa3-4510-96a3-99a6d25d9e97",
             "actions": [
                 {
@@ -728,7 +728,7 @@
             ]
         },
         {
-            "name": "ViveTrackerRightElbow",
+            "name": "VTRightElbow",
             "id": "5a401451-0cd7-4ab6-bff1-881072113aae",
             "actions": [
                 {
@@ -849,7 +849,7 @@
             ]
         },
         {
-            "name": "ViveTrackerLeftKnee",
+            "name": "VTLeftKnee",
             "id": "dd574d3b-ee95-4406-8e7c-7caf88a94322",
             "actions": [
                 {
@@ -970,7 +970,7 @@
             ]
         },
         {
-            "name": "ViveTrackerRightKnee",
+            "name": "VTRightKnee",
             "id": "2b6eddc5-fa58-4cc7-ab81-ed039810441b",
             "actions": [
                 {
@@ -1091,7 +1091,7 @@
             ]
         },
         {
-            "name": "ViveTrackerWaist",
+            "name": "VTWaist",
             "id": "fb725f69-2a57-46b7-b90c-4d68545c251a",
             "actions": [
                 {
@@ -1212,7 +1212,7 @@
             ]
         },
         {
-            "name": "ViveTrackerChest",
+            "name": "VTChest",
             "id": "c8950b61-6e04-4272-bbb2-fda1887025c0",
             "actions": [
                 {
@@ -1333,7 +1333,7 @@
             ]
         },
         {
-            "name": "ViveTrackerCamera",
+            "name": "VTCamera",
             "id": "dce94ccd-2d8a-454c-a153-253a9b8dc50a",
             "actions": [
                 {
@@ -1454,7 +1454,7 @@
             ]
         },
         {
-            "name": "ViveTrackerKeyboard",
+            "name": "VTKeyboard",
             "id": "c7fbaa61-064c-492f-a4ac-4cb85cd9881d",
             "actions": [
                 {
