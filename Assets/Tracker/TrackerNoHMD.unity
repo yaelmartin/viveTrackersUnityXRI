@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -647,7 +646,6 @@ GameObject:
   m_Component:
   - component: {fileID: 721355583}
   - component: {fileID: 721355585}
-  - component: {fileID: 721355584}
   m_Layer: 0
   m_Name: OrthoCamera (2)
   m_TagString: Untagged
@@ -670,14 +668,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 557887743}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!81 &721355584
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721355582}
-  m_Enabled: 1
 --- !u!20 &721355585
 Camera:
   m_ObjectHideFlags: 0
@@ -1156,7 +1146,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1058331771}
   - component: {fileID: 1058331774}
-  - component: {fileID: 1058331773}
   - component: {fileID: 1058331772}
   m_Layer: 0
   m_Name: Main Camera
@@ -1282,14 +1271,6 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 0
     m_Flags: 0
---- !u!81 &1058331773
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058331770}
-  m_Enabled: 1
 --- !u!20 &1058331774
 Camera:
   m_ObjectHideFlags: 0
@@ -1495,7 +1476,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1929731686}
   - component: {fileID: 1929731688}
-  - component: {fileID: 1929731687}
   m_Layer: 0
   m_Name: OrthoCamera
   m_TagString: Untagged
@@ -1518,14 +1498,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 557887743}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!81 &1929731687
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929731685}
-  m_Enabled: 1
 --- !u!20 &1929731688
 Camera:
   m_ObjectHideFlags: 0
@@ -1659,7 +1631,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2031445603}
   - component: {fileID: 2031445605}
-  - component: {fileID: 2031445604}
   m_Layer: 0
   m_Name: OrthoCamera (1)
   m_TagString: Untagged
@@ -1682,14 +1653,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 557887743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &2031445604
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031445602}
-  m_Enabled: 1
 --- !u!20 &2031445605
 Camera:
   m_ObjectHideFlags: 0
