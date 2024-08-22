@@ -131,9 +131,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 468635759185516539, guid: 9652efb745145e442b9611c8a0020584, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.36144
+      objectReference: {fileID: 0}
     - target: {fileID: 3578143722367694286, guid: 9652efb745145e442b9611c8a0020584, type: 3}
       propertyPath: m_Name
       value: PrefabMultiTrackersHMD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251631555234313001, guid: 9652efb745145e442b9611c8a0020584, type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6861036048268651947, guid: 9652efb745145e442b9611c8a0020584, type: 3}
       propertyPath: m_LocalPosition.x
