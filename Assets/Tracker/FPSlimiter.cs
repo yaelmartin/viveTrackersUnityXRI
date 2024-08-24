@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-public class FPSlimiter : MonoBehaviour
 
+namespace Tracker
 {
-    public int FPS = 30;
-    void Start()
+    public class FPSlimiter : MonoBehaviour
+
     {
-        Application.targetFrameRate = FPS;
+        public int FPS = 30;
+        void Start()
+        {
+            Application.targetFrameRate = FPS;
+        }
     }
 }

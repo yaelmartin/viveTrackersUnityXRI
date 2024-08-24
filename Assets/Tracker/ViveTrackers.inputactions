@@ -46,7 +46,7 @@
                 {
                     "name": "",
                     "id": "10130d76-c3c7-4027-ae40-07025892150c",
-                    "path": "<XRTracker>/devicePosition",
+                    "path": "<XRViveTracker>/devicePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
