@@ -68,8 +68,11 @@ namespace Tracker
             
             spawn.parent = null;
             
-            _initialIrlObjectWithTrackerPosition = irlObjectWithTracker.position;
-            _initialIrlObjectWithTrackerRotation = irlObjectWithTracker.rotation;
+            if(irlObjectWithTracker != null)
+            {
+                _initialIrlObjectWithTrackerPosition = irlObjectWithTracker.position;
+                _initialIrlObjectWithTrackerRotation = irlObjectWithTracker.rotation;
+            }
             
             LoadParameters();
         }

@@ -54,6 +54,7 @@ namespace Tracker
 
         protected void ParentObjectWithTrackerUsingParameters()
         {
+            if (irlObjectWithTracker == null) return;
             irlObjectWithTracker.SetParent(Tracker);
             irlObjectWithTracker.localPosition = TrackerParameters.IrlObjectWithTrackerPosition;
             irlObjectWithTracker.localRotation = TrackerParameters.IrlObjectWithTrackerRotation;
