@@ -16,16 +16,18 @@ namespace Tracker
     /// </summary>
     public class TrackerConfigLoader : MonoBehaviour
     {
-        [SerializeField] private protected Transform tracker;
+        private protected Transform Tracker;
         [SerializeField] private protected Transform irlObjectWithTracker;
         public string filePath = "trackerParameters.json";
-        private protected TrackerParameters _trackerParameters;
+        private protected TrackerParameters TrackerParameters;
         
         private void Awake()
         {
+            Tracker = transform;
             SetFilePath();
+
             
-            _trackerParameters=GetParametersFromJSON(filePath);
+            TrackerParameters=GetParametersFromJson(filePath);
             
             ParentObjectWithTrackerUsingParameters();
         }
@@ -35,7 +37,7 @@ namespace Tracker
             filePath = Path.Combine(Application.streamingAssetsPath, filePath);
         }
 
-        protected static TrackerParameters GetParametersFromJSON(string file)
+        protected static TrackerParameters GetParametersFromJson(string file)
         {
             if (File.Exists(file))
             {
@@ -52,9 +54,9 @@ namespace Tracker
 
         protected void ParentObjectWithTrackerUsingParameters()
         {
-            irlObjectWithTracker.SetParent(tracker);
-            irlObjectWithTracker.localPosition = _trackerParameters.IrlObjectWithTrackerPosition;
-            irlObjectWithTracker.localRotation = _trackerParameters.IrlObjectWithTrackerRotation;
+            irlObjectWithTracker.SetParent(Tracker);
+            irlObjectWithTracker.localPosition = TrackerParameters.IrlObjectWithTrackerPosition;
+            irlObjectWithTracker.localRotation = TrackerParameters.IrlObjectWithTrackerRotation;
         }
     }  
 }

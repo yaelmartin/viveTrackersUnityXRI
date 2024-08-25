@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tracker
+namespace Tracker.Demos.Resources
 {
     public class FPSlimiter : MonoBehaviour
 

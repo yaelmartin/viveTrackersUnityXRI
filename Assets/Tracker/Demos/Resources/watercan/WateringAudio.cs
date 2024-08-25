@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tracker.watercan
+namespace Tracker.Demos.Resources.watercan
 {
     //CC0 Script and sound from https://freesound.org/people/wobesound/sounds/488401/
     public class WateringAudio : MonoBehaviour {

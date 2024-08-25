@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tracker.watercan
+namespace Tracker.Demos.Resources.watercan
 {
     public class WaterCan : MonoBehaviour
     {

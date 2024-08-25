@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
-namespace Tracker
+namespace Tracker.Resources
 {
     public class DisplayRole : MonoBehaviour
     {

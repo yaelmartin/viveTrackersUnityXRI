@@ -3,9 +3,10 @@
 //                        (c) 2019 Sergey Stafeyev                           //
 //===========================================================================//
 
+// https://assetstore.unity.com/packages/tools/camera/free-fly-camera-140739
 using UnityEngine;
 
-namespace Tracker
+namespace Tracker.Demos.Resources.MultiTrackersScene
 {
     public class FreeFlyCamera : MonoBehaviour
     {

@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Tracker.MultiTrackerScene
+namespace Tracker.Demos.Resources.MultiTrackersScene
 {
     // Due to having both the VR camera and the display camera set on Display 1,
     // We need to delay its activation
