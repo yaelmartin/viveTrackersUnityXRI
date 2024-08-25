@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5072195043423781950}
   - component: {fileID: 329703728005452355}
-  - component: {fileID: 5950709168077779053}
   m_Layer: 0
   m_Name: VTSingle
   m_TagString: Untagged
@@ -103,21 +102,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!114 &5950709168077779053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8163026150749957519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87abdbbd58ec0e140be4e07dc129ede8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracker: {fileID: 5072195043423781950}
-  irlObjectWithTracker: {fileID: 0}
-  filePath: trackerParameters.json
 --- !u!1001 &4777604940720518540
 PrefabInstance:
   m_ObjectHideFlags: 0
