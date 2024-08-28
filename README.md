@@ -1,7 +1,10 @@
 # viveTrackersUnityXRI v1.4
 
 ## Introduction
-viveTrackersUnityXRI is a Unity package that enables the use of SteamVR trackers in Unity XRI 3 and makes it easy to move a virtual object from the position of a real one.
+viveTrackersUnityXRI is a Unity package that enables the use of SteamVR trackers in Unity XRI 3 and simplifies the process of matching real objects with virtual ones through easy calibration.
+
+[![Video preview](https://github.com/user-attachments/assets/21f6b937-8379-4259-87e1-3eee6da9da37)](https://youtu.be/8gWOsPiG3_I?si=tNO_YpnL_Y1LkK_v "Use real objects with trackers in Unity XR Interaction Toolkit 3")
+
 
 ## Features
 
@@ -72,12 +75,12 @@ Tips:
 - Use a VR headset with passthrough to verify offset accuracy
 
 After calibration:
-8. Save the offset (creates a .json file in the StreamingAssets folder)
-9. The configuration will load automatically on Play if the file exists
+- Save the offset (creates a .json file in the StreamingAssets folder)
+- The configuration will load automatically on Play if the file exists
 
-### Applying Saved Offset in VR
+## Applying Saved Offset in VR
 
-1. Add TrackerConfigLoader.cs to a tracker prefab (e.g., VTSingle, TrackerCamera)
+1. Add the component TrackerConfigLoader.cs to a tracker prefab (e.g., VTSingle, TrackerCamera)
 2. Change the filePath field to use your configured file
 
 ## Using Lighthouse Trackers Without HMD
@@ -95,8 +98,9 @@ After calibration:
    ```
 4. Use nullDriverEnable.ps1 or nullDriverDisable.ps1 by right-clicking and selecting "Run with PowerShell"
 
-Note: To fix a Unity Editor and SteamVR null driver bug, edit the following file:
+Note: To fix a Unity Editor and SteamVR null driver [bug that freezes Windows](https://github.com/ValveSoftware/steamvr_unity_plugin/issues/990), edit the following file:
 C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+
 Remove these lines:
 ```
 "windowX": 0,
@@ -107,8 +111,6 @@ Remove these lines:
 
 ## Credits
 
-HTCViveTrackerProfile.cs from [https://github.com/mbennett12/ViveTrackerHapticOpenXR](https://github.com/mbennett12/ViveTrackerHapticOpenXR)
+- HTCViveTrackerProfile.cs from [Vive's forums](https://forum.htc.com/topic/14370-tutorial-openxr-pc-vr-how-to-use-vive-tracker/?do=findComment&comment=55772) and haptics from [https://github.com/mbennett12/ViveTrackerHapticOpenXR](https://github.com/mbennett12/ViveTrackerHapticOpenXR)
 
-FreeFlyCamera.cs from [Sergey Stafeev](https://assetstore.unity.com/packages/tools/camera/free-fly-camera-140739)
-
-https://github.com/yaelmartin/viveTrackerUnityXRI/assets/93948862/f6650033-13ea-46fe-a652-94a9210ac79b
+- FreeFlyCamera.cs from [Sergey Stafeev](https://assetstore.unity.com/packages/tools/camera/free-fly-camera-140739)
