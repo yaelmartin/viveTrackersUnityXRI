@@ -113,6 +113,7 @@ namespace Tracker
                 Debug.Log("No file to delete.");
             }
         }
-
+        
+        public Transform Spawn => spawn;
     }
 }
