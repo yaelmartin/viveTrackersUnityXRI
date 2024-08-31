@@ -1,4 +1,4 @@
-# viveTrackersUnityXRI v1.4
+# viveTrackersUnityXRI v1.5
 
 ## Introduction
 viveTrackersUnityXRI is a Unity package that enables the use of SteamVR trackers in Unity XRI 3 and simplifies the process of matching real objects with virtual ones through easy calibration.
